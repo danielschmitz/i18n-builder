@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: './i18n-builder/'
+    publicPath: '/i18n-builder/'
 }
