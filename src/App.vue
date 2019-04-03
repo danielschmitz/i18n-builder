@@ -25,7 +25,7 @@
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs12>
+          <v-flex xs6>
             <v-text-field
               ref="tkey"
               v-model="tkey"
@@ -34,6 +34,18 @@
               @click:append="copy('tkey')"
             ></v-text-field>
           </v-flex>
+
+          <v-flex xs6>
+            <v-text-field
+              ref="tkey2"
+              v-model="tkey2"
+              label="tKey text"
+              append-icon="content_copy"
+              @click:append="copy('tkey2')"
+            ></v-text-field>
+          </v-flex>
+
+          
 
           <v-flex xs12>
             <v-text-field
@@ -83,6 +95,9 @@ export default {
     },
     tkey () { //{{ $t('bem_vindo') }}
       return `{{ $t('${this.keytext}') }}`
+    },
+    tkey2 () { //{{ $t('bem_vindo') }}
+      return `this.$t('${this.keytext}')`
     },
     complete () {
       return `${this.keytext}: '${this.text}',`
