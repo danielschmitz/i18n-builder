@@ -25,7 +25,7 @@
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs6>
+          <v-flex xs12>
             <v-text-field
               ref="tkey"
               v-model="tkey"
@@ -35,13 +35,25 @@
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs6>
+          
+
+          <v-flex xs12>
             <v-text-field
               ref="tkey2"
               v-model="tkey2"
               label="tKey text"
               append-icon="content_copy"
               @click:append="copy('tkey2')"
+            ></v-text-field>
+          </v-flex>
+
+            <v-flex xs12>
+            <v-text-field
+              ref="tkey3"
+              v-model="tkey3"
+              label="tKey text"
+              append-icon="content_copy"
+              @click:append="copy('tkey3')"
             ></v-text-field>
           </v-flex>
 
@@ -91,7 +103,13 @@ export default {
   },
   computed: {
     keytext () {
-      return this.text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_").toLowerCase();
+      return this.text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/ /g, "_")
+        .replace(/'/g, "")
+        .replace(/-/g, "_")
+        .toLowerCase();
     },
     tkey () { //{{ $t('bem_vindo') }}
       return `{{ $t('${this.keytext}') }}`
@@ -99,8 +117,11 @@ export default {
     tkey2 () { //{{ $t('bem_vindo') }}
       return `this.$t('${this.keytext}')`
     },
+     tkey3 () { //{{ $t('bem_vindo') }}
+      return `$t('${this.keytext}')`
+    },
     complete () {
-      return `${this.keytext}: '${this.text}',`
+      return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
     }
   }
 }
