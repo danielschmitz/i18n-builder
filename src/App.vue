@@ -57,6 +57,16 @@
             ></v-text-field>
           </v-flex>
 
+            <v-flex xs12>
+            <v-text-field
+              ref="tkey4"
+              v-model="tkey4"
+              label="props default"
+              append-icon="content_copy"
+              @click:append="copy('tkey4')"
+            ></v-text-field>
+          </v-flex>
+
           
 
           <v-flex xs12>
@@ -119,6 +129,9 @@ export default {
     },
      tkey3 () { //{{ $t('bem_vindo') }}
       return `$t('${this.keytext}')`
+    },
+     tkey4 () { //{{ $t('bem_vindo') }}
+      return `default: function () { return this.$t('${this.keytext}') }`
     },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
