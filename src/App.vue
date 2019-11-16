@@ -18,13 +18,23 @@
 
           </v-flex>
 
-          <v-flex xs12>
+          <v-flex xs6>
             <v-text-field
               ref="text"
               v-model="text"
               label="Texto Completo"
               append-icon="content_copy"
               @click:append="copy('text')"
+            ></v-text-field>
+          </v-flex>
+
+            <v-flex xs6>
+            <v-text-field
+              ref="tkey9"
+              v-model="tkey9"
+              label="name"
+              append-icon="content_copy"
+              @click:append="copy('tkey9')"
             ></v-text-field>
           </v-flex>
 
@@ -194,6 +204,9 @@ export default {
     },
      tkey8 () {
       return `i18n.t('${this.keytext}')`
+    },
+     tkey9 () {
+      return `name: this.$t('${this.keytext}'),`
     },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
