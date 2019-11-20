@@ -200,7 +200,7 @@ export default {
       return `:floatLabel="$t('${this.keytext}') + ' *'"`
     },
       tkey7 () {
-      return `data-vv-as="$t('${this.keytext}')"`
+      return `:data-vv-as="$t('${this.keytext}')"`
     },
      tkey8 () {
       return `i18n.t('${this.keytext}')`
