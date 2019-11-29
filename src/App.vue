@@ -4,42 +4,18 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs3>
-          <v-btn @click="paste()">paste</v-btn>
+            <v-btn @click="paste()">paste</v-btn>
           </v-flex>
 
-           <v-flex xs9>
-            <v-text-field
-              ref="complete"
-              v-model="complete"
-              label="key:value"
-              append-icon="content_copy"
-              @click:append="copy('complete')"
-            ></v-text-field>
-
+          <v-flex xs9>
+            <v-radio-group v-model="front" row>
+              <v-radio label="Front" :value="true"></v-radio>
+              <v-radio label="Back" :value="false"></v-radio>
+            </v-radio-group>
           </v-flex>
+        </v-layout>
 
-          <v-flex xs12>
-            <v-text-field
-              ref="completeL"
-              v-model="completeL"
-              label="key:value laravel"
-              append-icon="content_copy"
-              @click:append="copy('completeL')"
-            ></v-text-field>
-
-          </v-flex>
-
-           <v-flex xs6>
-            <v-text-field
-              ref="tkeyL"
-              v-model="tkeyL"
-              label="name"
-              append-icon="content_copy"
-              @click:append="copy('tkeyL')"
-            ></v-text-field>
-          </v-flex>
-
-
+         <v-layout row wrap>
           <v-flex xs6>
             <v-text-field
               ref="text"
@@ -49,8 +25,53 @@
               @click:append="copy('text')"
             ></v-text-field>
           </v-flex>
+           <v-flex xs6>
+            <v-text-field
+              ref="key"
+              v-model="keytext"
+              label="Key text"
+              append-icon="content_copy"
+              @click:append="copy('key')"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
 
-            <v-flex xs6>
+        <v-layout row wrap v-if="front===false">
+          <v-flex xs12>
+            <v-text-field
+              ref="completeL"
+              v-model="completeL"
+              label="key:value laravel"
+              append-icon="content_copy"
+              @click:append="copy('completeL')"
+            ></v-text-field>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-text-field
+              ref="tkeyL"
+              v-model="tkeyL"
+              label="name"
+              append-icon="content_copy"
+              @click:append="copy('tkeyL')"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+
+       
+
+        <v-layout row wrap v-if="front===true">
+          <v-flex xs12>
+            <v-text-field
+              ref="complete"
+              v-model="complete"
+              label="key:value"
+              append-icon="content_copy"
+              @click:append="copy('complete')"
+            ></v-text-field>
+          </v-flex>
+
+          <v-flex xs6>
             <v-text-field
               ref="tkey9"
               v-model="tkey9"
@@ -60,15 +81,7 @@
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs6>
-            <v-text-field
-              ref="key"
-              v-model="keytext"
-              label="Key text"
-              append-icon="content_copy"
-              @click:append="copy('key')"
-            ></v-text-field>
-          </v-flex>
+         
 
           <v-flex xs6>
             <v-text-field
@@ -79,8 +92,6 @@
               @click:append="copy('tkey')"
             ></v-text-field>
           </v-flex>
-
-          
 
           <v-flex xs6>
             <v-text-field
@@ -102,7 +113,7 @@
             ></v-text-field>
           </v-flex>
 
-            <v-flex xs12>
+          <v-flex xs12>
             <v-text-field
               ref="tkey4"
               v-model="tkey4"
@@ -132,7 +143,7 @@
             ></v-text-field>
           </v-flex>
 
-            <v-flex xs6>
+          <v-flex xs6>
             <v-text-field
               ref="tkey7"
               v-model="tkey7"
@@ -141,9 +152,8 @@
               @click:append="copy('tkey7')"
             ></v-text-field>
           </v-flex>
-          
 
-             <v-flex xs6>
+          <v-flex xs6>
             <v-text-field
               ref="tkey8"
               v-model="tkey8"
@@ -151,10 +161,6 @@
               append-icon="content_copy"
               @click:append="copy('tkey8')"
             ></v-text-field>
-          </v-flex>
-
-        
-
           </v-flex>
         </v-layout>
       </v-container>
@@ -169,7 +175,8 @@ export default {
   name: 'app',
   data () {
     return {
-      text: ''
+      text: '',
+      front: true
     }
   },
   methods: {
@@ -182,7 +189,7 @@ export default {
     paste () {
       navigator.clipboard.readText()
         .then(text => {
-         this.text = text
+          this.text = text
         })
         .catch(err => {
           console.error('Failed to read clipboard contents: ', err);
@@ -209,35 +216,35 @@ export default {
     tkey2 () {
       return `this.$t('${this.keytext}')`
     },
-     tkey3 () {
+    tkey3 () {
       return `$t('${this.keytext}')`
     },
-     tkey4 () {
+    tkey4 () {
       return `default: function () { return this.$t('${this.keytext}') }`
     },
-     tkey5 () {
+    tkey5 () {
       return `:floatLabel="$t('${this.keytext}')"`
     },
-      tkey6 () {
+    tkey6 () {
       return `:floatLabel="$t('${this.keytext}') + ' *'"`
     },
-      tkey7 () {
+    tkey7 () {
       return `:data-vv-as="$t('${this.keytext}')"`
     },
-     tkey8 () {
+    tkey8 () {
       return `i18n.t('${this.keytext}')`
     },
-     tkey9 () {
+    tkey9 () {
       return `name: this.$t('${this.keytext}'),`
     },
-     tkeyL () {
+    tkeyL () {
       return `__('${this.keytext}');`
     },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
     },
     completeL () {
-      return `'${this.keytext}' => '${this.text.replace(/'/g, "")}',`
+      return `"${this.keytext}" : "${this.text.replace(/'/g, "")}",`
     }
   }
 }
