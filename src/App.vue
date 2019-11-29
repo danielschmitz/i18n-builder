@@ -18,6 +18,28 @@
 
           </v-flex>
 
+          <v-flex xs12>
+            <v-text-field
+              ref="completeL"
+              v-model="completeL"
+              label="key:value laravel"
+              append-icon="content_copy"
+              @click:append="copy('completeL')"
+            ></v-text-field>
+
+          </v-flex>
+
+           <v-flex xs6>
+            <v-text-field
+              ref="tkeyL"
+              v-model="tkeyL"
+              label="name"
+              append-icon="content_copy"
+              @click:append="copy('tkeyL')"
+            ></v-text-field>
+          </v-flex>
+
+
           <v-flex xs6>
             <v-text-field
               ref="text"
@@ -208,8 +230,14 @@ export default {
      tkey9 () {
       return `name: this.$t('${this.keytext}'),`
     },
+     tkeyL () {
+      return `__('${this.keytext}');`
+    },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
+    },
+    completeL () {
+      return `'${this.keytext}' => '${this.text.replace(/'/g, "")}',`
     }
   }
 }
