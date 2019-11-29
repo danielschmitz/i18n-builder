@@ -238,7 +238,7 @@ export default {
       return `name: this.$t('${this.keytext}'),`
     },
     tkeyL () {
-      return `__('${this.keytext}');`
+      return `__('${this.keytext}')`
     },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
