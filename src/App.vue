@@ -204,6 +204,8 @@ export default {
         .replace(/ /g, "_")
         .replace(/'/g, "")
         .replace(/,/g, "")
+        .replace(/\$/g, "")
+        .replace(/->/g, "")
         .replace(/\./g, "")
         .replace(/:/g, "")
         .replace(/\\/g, "")
@@ -238,13 +240,13 @@ export default {
       return `name: this.$t('${this.keytext}'),`
     },
     tkeyL () {
-      return `__('${this.keytext}')`
+      return `__('${this.keytext.replace(/"/g, "")}')`
     },
     complete () {
       return `${this.keytext}: '${this.text.replace(/'/g, "")}',`
     },
     completeL () {
-      return `"${this.keytext}" : "${this.text.replace(/'/g, "")}",`
+      return `"${this.keytext.replace(/"/g, "")}" : "${this.text.replace(/'/g, "").replace(/ "/g, " '").replace(/" /g, "' ").replace(/"/g, "").replace(/\$/g, ":")}",`
     }
   }
 }
