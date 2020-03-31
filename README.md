@@ -1,4 +1,8 @@
-# i18n-builder
+# Vue i18n Builder
+
+![](https://i.imgur.com/TkhebVL.png)
+
+Transforma textos em expressões para serem usads no vue-i18n. Possui um módulo para laravel-i18n
 
 ## Project setup
 ```
